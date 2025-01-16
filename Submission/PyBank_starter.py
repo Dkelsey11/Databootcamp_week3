@@ -6,8 +6,8 @@ import csv
 import os
 
 # Files to load and output (update with correct file paths)
-filepath = "Resources/budget_data.csv"
-file_to_output = "analysis/budget_analysis.txt" 
+input_path = os.path.join("resources", "budget_data.cvs")
+output_path = os.path.join("analysis", "budget_analysis.text")
 
 
 # Define variables to track the financial data
@@ -15,30 +15,34 @@ total_months = 0
 total_net = 0
 
 # Add more variables to track other necessary financial data
-last_month_profit = 0
-curr_month_profit = 0
-total_change = 0
+net_change_list = []
+month_list = []
+greatest_increase = ['', 0]
+greatest_decrease = ['',0]
 
-max_change = 0
-max_month = ""
-min_change = 0
-min_month = ""
+
 
 # Open and read the csv
 with open(file_to_load) as financial_data:
-    reader = csv.reader(financial_data)
+    os.chdir(os.path.dirname(os.path.realpath(_file_)))
+    with open(Imput_path) as csv_file:
+        reader = csv.reader(csv_file)
 
     # Skip the header row
     header = next(reader)
 
     # Extract first row to avoid appending to net_change_list
-
+first_row = next(reader)
 
     # Track the total and net change
-
+total_months += 1
+total_net += int(first_row[1])
+previous_net = int(first_row[1])
 
     # Process each row of data
-    for row in reader:
+for row in reader:
+        total_months += 1
+        total_net += int(row[1])
         print (row)
         # Track the total
 
